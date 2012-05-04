@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using MoCS.WebClient.Models;
-using MoCS.Business.Objects;
-using System.Text;
-using MoCS.Business.Facade;
-using System.Web.Security;
 using System.Configuration;
 using System.IO;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+using MoCS.Business.Facade;
+using MoCS.Business.Objects;
+using MoCS.WebClient.Models;
 
 namespace MoCS.WebClient.Controllers
 {
     public class CurrentAssignmentController : Controller
     {
-        //
-        // GET: /CurrentAssignment/
-
-
+        /// GET: /CurrentAssignment/
         [Authorize]
         public ActionResult Index()
         {
@@ -37,7 +32,6 @@ namespace MoCS.WebClient.Controllers
             // Find enrollment
             List<AssignmentEnrollment> AEList;
             AEList = ClientFacade.Instance.GetAssignmentEnrollmentsForTeamForTournamentAssignment(ta.Id, team.Id);
-            //MoCSServiceProxy.Instance.GetAssignmentEnrollmentsForTeamForTournament(teamId, tournamentId);
 
             // See if the team has enrolled for the tournament assignment.
             AssignmentEnrollment ae = AEList.Find(i => i.TournamentAssignment.Id == ta.Id && i.IsActive);
@@ -75,7 +69,6 @@ namespace MoCS.WebClient.Controllers
             caModel.TabContentModelList = new List<TabContentModel>();
 
             // Get the AssignmentFiles and Submits if the team has enrolled for this assignment
-
             if (hasEnrolled)
             {
                 foreach (var tc in ta.Assignment.AssignmentFiles)
@@ -130,7 +123,6 @@ namespace MoCS.WebClient.Controllers
                     Id = ta.Id,
                     Tournament = new Tournament { Id = t.Id },
                     Assignment = new Assignment { Id = a.Id }
-
                 }
             };
 
@@ -192,7 +184,6 @@ namespace MoCS.WebClient.Controllers
                 {
                     TempData["SubmittedFileText"] = "Unable to process submit. Reason: " + e.Message;
                 }
-
             }
 
             return RedirectToAction("Index");
@@ -229,8 +220,6 @@ namespace MoCS.WebClient.Controllers
 
             // end response
             Response.End();
-
         }
-
     }
 }

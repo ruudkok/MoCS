@@ -11,24 +11,21 @@ using System.Configuration;
 using MoCS.BuildService.Business.Interfaces;
 using System.Threading;
 using System.Collections;
+using MoCS.Business.Objects.Interfaces;
+using MoCS.BuildService.Business.Settings;
 
 namespace MoCS.BuildService
 {
-
     public class SubmitWatcher
     {
         private Hashtable _runningSubmitsHT;
         private System.Timers.Timer _timer;
-        private SystemSettings _systemSettings;
-        private IFileSystem _fileSystem;
 
         private delegate void DoWorkNeedsTimeOutDelegate(ValidationProcess submit);
 
         public SubmitWatcher()
         {
             Hashtable ht2 = CreateSynchronizedWrappedHashtable();
-            _systemSettings = SettingsFactory.CreateSystemSettings();
-            _fileSystem = new MoCS.BuildService.Business.FileSystemWrapper();
         }
 
         private Hashtable CreateSynchronizedWrappedHashtable()
@@ -40,16 +37,15 @@ namespace MoCS.BuildService
 
         public void StartWatching()
         {
-            ClientFacade facade = new ClientFacade();
+            IBuildServiceFacade facade = ServiceLocator.Instance.GetService<IBuildServiceFacade>();
             List<Submit> submits = facade.GetUnprocessedSubmits();
             StartWatchingNewSubmits(submits);
-
             StartPolling();
         }
 
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            ClientFacade facade = new ClientFacade();
+            IBuildServiceFacade facade = ServiceLocator.Instance.GetService<IBuildServiceFacade>();
             List<Submit> submits = facade.GetUnprocessedSubmits();
             StartWatchingNewSubmits(submits);
             TerminateOldSubmits();
@@ -62,15 +58,13 @@ namespace MoCS.BuildService
             _timer.Interval = GetPollingInterval();
             _timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
             _timer.Start();
-
         }
 
         private int GetPollingInterval()
         {
-            string pollingIntervalValue = ConfigurationManager.AppSettings["PollingInterval"];
+            string pollingIntervalValue = ServiceLocator.Instance.GetService<ProcessSettings>().PollingIntervalValue;
             int pollingInterval = Convert.ToInt32(pollingIntervalValue);
             return pollingInterval;
-
         }
 
         private void StartWatchingNewSubmits(List<Submit> submits)
@@ -101,7 +95,7 @@ namespace MoCS.BuildService
         /// <returns></returns>
         private int GetTimeOut()
         {
-            int millisecondsToWait = int.Parse(ConfigurationManager.AppSettings["ProcessingTimeOut"]);
+            int millisecondsToWait = int.Parse(ServiceLocator.Instance.GetService<ProcessSettings>().ProcessingTimeOut);
             return millisecondsToWait;
         }
 
@@ -114,35 +108,26 @@ namespace MoCS.BuildService
             //see if any thread has timed out
             foreach (string key in _runningSubmitsHT.Keys)
             {
-                Thread t = ((ValidationProcess)_runningSubmitsHT[key]).Thread;
-                ValidationProcess validationProcess = null;
+                ValidationProcess validationProcess = (ValidationProcess)_runningSubmitsHT[key];
 
-                validationProcess = (ValidationProcess)_runningSubmitsHT[key];
-                
                 bool terminate = validationProcess.IsReady();
-               
-                if(!terminate)
+
+                if (!terminate)
                 {
                     terminate = validationProcess.CheckForTimeOut(DateTime.Now, timeOut);
-                    if(terminate)
+                    if (terminate)
                     {
                         validationProcess.SaveStatusToDatabase();
                     }
                 }
 
-                if(terminate)
+                if (terminate)
                 {
                     //remind wich key to delete. this can't be done inside the enumeration
                     keysToDelete.Add(key);
 
                     //kill the thread 
-                    t.Abort();
-
-                    //terminate running processes
-                    if (validationProcess.Validator != null)
-                    {
-                        validationProcess.Validator.Terminate();
-                    }
+                    validationProcess.Thread.Abort();
                 }
             }
 
@@ -155,7 +140,6 @@ namespace MoCS.BuildService
                     _runningSubmitsHT.Remove(key);
                 }
             }
-
         }
 
         public void BuildSolution(object vp)
@@ -163,7 +147,8 @@ namespace MoCS.BuildService
             ValidationProcess validationProcess = (ValidationProcess)vp;
             try
             {
-                ProcessTeamSubmit(validationProcess, _systemSettings);
+                ProcessTeamSubmit(validationProcess);
+                Log(string.Format("PROCESS READY FOR: {0}-{1}  -  {2} ", validationProcess.Submit.Team.Name, validationProcess.Submit.TournamentAssignment.Assignment.Name, validationProcess.Result.Result.ToString()));
             }
             catch (ThreadAbortException)
             {
@@ -179,19 +164,18 @@ namespace MoCS.BuildService
 
         private void TraceStatus()
         {
-            Console.WriteLine(DateTime.Now.ToLongTimeString() + "  submits: " + _runningSubmitsHT.Count.ToString());
+            ServiceLocator.Instance.GetService<ILogger>().Log(DateTime.Now.ToLongTimeString() + "  submits: " + _runningSubmitsHT.Count.ToString());
         }
 
         private static void Log(string message)
         {
-            Console.WriteLine(DateTime.Now.ToLongTimeString() + " " + message);
+            ServiceLocator.Instance.GetService<ILogger>().Log(DateTime.Now.ToLongTimeString() + " " + message);
         }
 
-        private static void ProcessTeamSubmit(ValidationProcess validationProcess, SystemSettings sysSettings)
+        private static void ProcessTeamSubmit(ValidationProcess validationProcess)
         {
-            validationProcess.PrepareProcessing(sysSettings);
-            validationProcess.Process(sysSettings);
-            validationProcess.FinishProcessing();
+            Log(string.Format("STARTED BUILD FOR: {0}-{1}", validationProcess.Submit.Team.Name, validationProcess.Submit.TournamentAssignment.Assignment.Name));
+            validationProcess.Process();
         }
     }
 }

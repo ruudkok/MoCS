@@ -15,38 +15,38 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0B461446B6E805CCE483A1B1DD092CD2"
+        "OwnerKey" = "8:_EADCCE7BD6F74A5497933C80B9D9B40A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_40925C6C9F6DEEB0B1CDA3E87D980AEB"
+        "OwnerKey" = "8:_EADCCE7BD6F74A5497933C80B9D9B40A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4643717B6B224D9E8A30041CBF582723"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9355BA2FED3774366737863989F7F4BE"
-        "OwnerKey" = "8:_EADCCE7BD6F74A5497933C80B9D9B40A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BC58F19F757B8339DBFC30120E322A0E"
-        "OwnerKey" = "8:_EADCCE7BD6F74A5497933C80B9D9B40A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CC8F01E0DF749D47F626AE2A0DC9AFDF"
-        "OwnerKey" = "8:_9355BA2FED3774366737863989F7F4BE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CC8F01E0DF749D47F626AE2A0DC9AFDF"
+        "MsmKey" = "8:_4C313F6C511B19D5C9959043669E9E73"
         "OwnerKey" = "8:_4643717B6B224D9E8A30041CBF582723"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CC8F01E0DF749D47F626AE2A0DC9AFDF"
+        "MsmKey" = "8:_4C313F6C511B19D5C9959043669E9E73"
         "OwnerKey" = "8:_EADCCE7BD6F74A5497933C80B9D9B40A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4C313F6C511B19D5C9959043669E9E73"
+        "OwnerKey" = "8:_40925C6C9F6DEEB0B1CDA3E87D980AEB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,25 +64,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_40925C6C9F6DEEB0B1CDA3E87D980AEB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0B461446B6E805CCE483A1B1DD092CD2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4643717B6B224D9E8A30041CBF582723"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9355BA2FED3774366737863989F7F4BE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CC8F01E0DF749D47F626AE2A0DC9AFDF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BC58F19F757B8339DBFC30120E322A0E"
+        "OwnerKey" = "8:_4C313F6C511B19D5C9959043669E9E73"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -147,6 +147,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -177,45 +190,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9355BA2FED3774366737863989F7F4BE"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MoCS.Business.Facade, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_9355BA2FED3774366737863989F7F4BE"
-                    {
-                    "Name" = "8:MoCS.Business.Facade.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MoCS.Business.Facade.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F8C448B0EA044916B2B88BD939FBDFFE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BC58F19F757B8339DBFC30120E322A0E"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0B461446B6E805CCE483A1B1DD092CD2"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BC58F19F757B8339DBFC30120E322A0E"
+                    "_0B461446B6E805CCE483A1B1DD092CD2"
                     {
                     "Name" = "8:System.Web.Mvc.dll"
                     "Attributes" = "3:512"
@@ -239,14 +221,45 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CC8F01E0DF749D47F626AE2A0DC9AFDF"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_40925C6C9F6DEEB0B1CDA3E87D980AEB"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MoCS.Business.Facade, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_40925C6C9F6DEEB0B1CDA3E87D980AEB"
+                    {
+                    "Name" = "8:MoCS.Business.Facade.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MoCS.Business.Facade.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F8C448B0EA044916B2B88BD939FBDFFE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4C313F6C511B19D5C9959043669E9E73"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MoCS.Business.Objects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CC8F01E0DF749D47F626AE2A0DC9AFDF"
+                    "_4C313F6C511B19D5C9959043669E9E73"
                     {
                     "Name" = "8:MoCS.Business.Objects.dll"
                     "Attributes" = "3:512"
@@ -360,7 +373,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MoCS WebClient"
         "ProductCode" = "8:{77211C58-02C7-4C7A-864F-A75C1AEF45F3}"
-        "PackageCode" = "8:{9CE6417E-28B1-44C2-A0E9-D4DB0A5764B7}"
+        "PackageCode" = "8:{7A2B8366-718C-498D-AF73-523E88B9A45F}"
         "UpgradeCode" = "8:{ABAA1C59-C09A-41B7-AFAC-7806D9861F60}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

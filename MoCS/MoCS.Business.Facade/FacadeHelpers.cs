@@ -48,8 +48,7 @@ namespace MoCS.Business.Facade
                 XmlDocument doc = fileSystem.LoadXml(path);
 
                 a.FriendlyName = GetNodeValue(doc, "Assignment/DisplayName");
-                //a.Tagline = GetNodeValue(doc, "Assignment/Hint");
-
+ 
                 a.Difficulty = int.Parse(GetNodeValue(doc, "Assignment/Difficulty"));
                 a.Author = GetNodeValue(doc, "Assignment/Author");
                 a.Category = GetNodeValue(doc, "Assignment/Category");
@@ -57,13 +56,6 @@ namespace MoCS.Business.Facade
                 a.InterfaceNameToImplement = GetNodeValue(doc, "Assignment/Rules/InterfaceNameToImplement");
                 a.ClassNameToImplement = GetNodeValue(doc, "Assignment/Rules/ClassNameToImplement");
 
-                //a.ClassFileName = GetNodeValue(doc, "Assignment/Files/ClassFile");
-                //a.InterfaceFileName = GetNodeValue(doc, "Assignment/Files/InterfaceFile");
-
-                //a.UnitTestClientFileName = GetNodeValue(doc, "Assignment/Files/NunitTestFileClient");
-                //a.UnitTestServerFileName = GetNodeValue(doc, "Assignment/Files/NunitTestFileServer");
-
-                //a.CaseFileName = GetNodeValue(doc, "Assignment/Files/Case");
                 a.AssignmentFiles = new List<AssignmentFile>();
                 XmlNode fileNode = doc.SelectSingleNode("Assignment/Files");
                 foreach (XmlNode fileChildNode in fileNode.ChildNodes)
@@ -89,8 +81,8 @@ namespace MoCS.Business.Facade
             {
                 throw new ApplicationException("Details for the assignment could not be found");
             }
-            return a;
 
+            return a;
         }
 
         private static string GetNodeValue(XmlNode node, string xpath)
@@ -100,6 +92,7 @@ namespace MoCS.Business.Facade
             {
                 return n.InnerText;
             }
+
             return "";
         }
     }

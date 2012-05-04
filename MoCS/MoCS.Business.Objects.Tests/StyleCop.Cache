@@ -1,0 +1,30 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/04/2011 22:52:24</timestamp>
+      <milliseconds>328</milliseconds>
+    </settings>
+    <timestamp>04/30/2012 08:16:25</timestamp>
+    <milliseconds>937</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="1806631958">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="ServiceLocatorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/04/2011 22:52:24</timestamp>
+      <milliseconds>328</milliseconds>
+    </settings>
+    <timestamp>05/05/2012 00:11:02</timestamp>
+    <milliseconds>968</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>2</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+</stylecopresultscache>

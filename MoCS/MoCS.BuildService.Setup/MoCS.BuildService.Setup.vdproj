@@ -15,13 +15,43 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_06C237EBD40A88C2B12C8B66D85CE373"
+        "MsmKey" = "8:_23D492C371D1594474BABB1A0A049C20"
         "OwnerKey" = "8:_AE910C80254D460F9294484DA26482E4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6D5185BF70C8E91BC7A15D4A0EC223E7"
+        "MsmKey" = "8:_6404614E294FE6D33EEEA98D24EEAD4F"
+        "OwnerKey" = "8:_AE910C80254D460F9294484DA26482E4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8160FDDE9A6214A0EB777DCD9B0DD87D"
+        "OwnerKey" = "8:_23D492C371D1594474BABB1A0A049C20"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8160FDDE9A6214A0EB777DCD9B0DD87D"
+        "OwnerKey" = "8:_9B8EB2A1FDB59F97B6B6ECD5BC8B40D2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8160FDDE9A6214A0EB777DCD9B0DD87D"
+        "OwnerKey" = "8:_AE910C80254D460F9294484DA26482E4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8160FDDE9A6214A0EB777DCD9B0DD87D"
+        "OwnerKey" = "8:_6404614E294FE6D33EEEA98D24EEAD4F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9B8EB2A1FDB59F97B6B6ECD5BC8B40D2"
         "OwnerKey" = "8:_AE910C80254D460F9294484DA26482E4"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,36 +63,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CA20C2840CA6417E33DD4EA6A1135B2F"
-        "OwnerKey" = "8:_AE910C80254D460F9294484DA26482E4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E36875278C651CEA8EC3ACF14D117784"
-        "OwnerKey" = "8:_6D5185BF70C8E91BC7A15D4A0EC223E7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E36875278C651CEA8EC3ACF14D117784"
-        "OwnerKey" = "8:_CA20C2840CA6417E33DD4EA6A1135B2F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E36875278C651CEA8EC3ACF14D117784"
-        "OwnerKey" = "8:_AE910C80254D460F9294484DA26482E4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_06C237EBD40A88C2B12C8B66D85CE373"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AE910C80254D460F9294484DA26482E4"
         "MsmSig" = "8:_UNDEFINED"
@@ -70,19 +70,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CA20C2840CA6417E33DD4EA6A1135B2F"
+        "OwnerKey" = "8:_9B8EB2A1FDB59F97B6B6ECD5BC8B40D2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6D5185BF70C8E91BC7A15D4A0EC223E7"
+        "OwnerKey" = "8:_6404614E294FE6D33EEEA98D24EEAD4F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E36875278C651CEA8EC3ACF14D117784"
+        "OwnerKey" = "8:_23D492C371D1594474BABB1A0A049C20"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8160FDDE9A6214A0EB777DCD9B0DD87D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -103,6 +109,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -119,6 +146,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -148,14 +196,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_06C237EBD40A88C2B12C8B66D85CE373"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_23D492C371D1594474BABB1A0A049C20"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MoCS.BuildService.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_06C237EBD40A88C2B12C8B66D85CE373"
+                    "_23D492C371D1594474BABB1A0A049C20"
                     {
                     "Name" = "8:MoCS.BuildService.Business.dll"
                     "Attributes" = "3:512"
@@ -179,14 +227,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6D5185BF70C8E91BC7A15D4A0EC223E7"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6404614E294FE6D33EEEA98D24EEAD4F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MoCS.Business.Facade, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6D5185BF70C8E91BC7A15D4A0EC223E7"
+                    "_6404614E294FE6D33EEEA98D24EEAD4F"
                     {
                     "Name" = "8:MoCS.Business.Facade.dll"
                     "Attributes" = "3:512"
@@ -210,20 +258,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA20C2840CA6417E33DD4EA6A1135B2F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8160FDDE9A6214A0EB777DCD9B0DD87D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MoCS.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MoCS.Business.Objects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CA20C2840CA6417E33DD4EA6A1135B2F"
+                    "_8160FDDE9A6214A0EB777DCD9B0DD87D"
                     {
-                    "Name" = "8:MoCS.Data.dll"
+                    "Name" = "8:MoCS.Business.Objects.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:MoCS.Data.dll"
+            "SourcePath" = "8:MoCS.Business.Objects.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_203A6F186FDF4AEEA10FF06FF9D0ABA5"
@@ -241,20 +289,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E36875278C651CEA8EC3ACF14D117784"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9B8EB2A1FDB59F97B6B6ECD5BC8B40D2"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MoCS.Business.Objects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MoCS.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E36875278C651CEA8EC3ACF14D117784"
+                    "_9B8EB2A1FDB59F97B6B6ECD5BC8B40D2"
                     {
-                    "Name" = "8:MoCS.Business.Objects.dll"
+                    "Name" = "8:MoCS.Data.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:MoCS.Business.Objects.dll"
+            "SourcePath" = "8:MoCS.Data.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_203A6F186FDF4AEEA10FF06FF9D0ABA5"
@@ -340,7 +388,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MoCS BuildService"
         "ProductCode" = "8:{33FA4F3A-A362-47E0-9D59-559320684CC2}"
-        "PackageCode" = "8:{D3D977E6-01D3-4FD4-8161-CD5BC86CF74B}"
+        "PackageCode" = "8:{23B9FE3E-CB69-43C2-A558-A736891873A9}"
         "UpgradeCode" = "8:{51925AA1-95D2-43CF-8265-A94E791CDCC8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

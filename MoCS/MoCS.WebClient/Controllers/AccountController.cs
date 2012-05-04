@@ -11,11 +11,9 @@ using MoCS.WebClient.Models;
 
 namespace MoCS.WebClient.Controllers
 {
-
     [HandleError]
     public class AccountController : Controller
     {
-
         // This constructor is used by the MVC framework to instantiate the controller using
         // the default forms authentication and membership providers.
         public AccountController()
@@ -154,6 +152,7 @@ namespace MoCS.WebClient.Controllers
             if (ModelState.IsValid)
             {
                 object providerUserKey;
+
                 // Attempt to register the user
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Members, out providerUserKey );
 
@@ -209,6 +208,5 @@ namespace MoCS.WebClient.Controllers
                     return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
         }
-
     }
 }

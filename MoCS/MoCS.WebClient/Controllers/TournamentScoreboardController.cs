@@ -12,9 +12,7 @@ namespace MoCS.WebClient.Controllers
 {
     public class TournamentScoreboardController : Controller
     {
-        //
-        // GET: /TournamentScoreboard/
-
+        /// GET: /TournamentScoreboard/
         [Authorize]
         public ActionResult Index()
         {
@@ -28,10 +26,8 @@ namespace MoCS.WebClient.Controllers
                 return RedirectToAction("Index", "Assignments");
             }
 
-
             // Get a list of TournamentAssignments with associated enrollments
             // Each enrollment has the last submit
-
             List<TournamentAssignment> taList = ClientFacade.Instance.GetTournamentScoreboard(t.Id);
 
             TournamentScoreboardModel model = new TournamentScoreboardModel();
@@ -41,8 +37,6 @@ namespace MoCS.WebClient.Controllers
             Response.AddHeader("refresh", "20");
 
             return View(model);
-
         }
-
     }
 }

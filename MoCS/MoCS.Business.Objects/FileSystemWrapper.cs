@@ -56,17 +56,13 @@ namespace MoCS.Business.Objects
                         messages.Add(line);
                         line = r.ReadLine();
                     }
+
                     r.Close();
                 }
             }
+
             return messages;
         }
-
-
-        //public bool FileExists(string path)
-        //{
-        //    return File.Exists(path);
-        //}
 
         public XmlDocument LoadXml(string path)
         {
@@ -105,7 +101,6 @@ namespace MoCS.Business.Objects
             File.Copy(pathFrom, pathTo, overwrite);
         }
 
-
         public void DeleteFileIfExists(string path)
         {
             if (FileExists(path))
@@ -114,6 +109,13 @@ namespace MoCS.Business.Objects
             }
         }
 
+        public void DeleteDirectory(string path)
+        {
+            if(DirectoryExists(path))
+            {
+                Directory.Delete(path, true);
+            }
+        }
 
         public void CreateDirectoryIfNotExists(string path)
         {
@@ -122,8 +124,5 @@ namespace MoCS.Business.Objects
                 CreateDirectory(path);
             }
         }
-
-
-
     }
 }

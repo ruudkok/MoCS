@@ -5,14 +5,15 @@ using System.Text;
 using MoCS.BuildService.Business;
 using System.Configuration;
 using MoCS.Business.Objects;
+using MoCS.BuildService.Business.Settings;
 
 namespace MoCS.BuildService
 {
     public class SettingsFactory
     {
-        public static SystemSettings CreateSystemSettings()
+        public static ProcessSettings CreateProcessSettings()
         {
-            SystemSettings sysSettings = new SystemSettings();
+            ProcessSettings settings = new ProcessSettings();
 
             string cscPath = ConfigurationManager.AppSettings["CscPath"];
             string nunitAssemblyPath = ConfigurationManager.AppSettings["NunitAssemblyPath"];
@@ -20,52 +21,45 @@ namespace MoCS.BuildService
 
             nunitAssemblyPath = RemoveTrailingSlashFromPath(nunitAssemblyPath);
             nunitConsolePath = RemoveTrailingSlashFromPath(nunitConsolePath);
-         
-            sysSettings.CscPath = cscPath;
-            sysSettings.NunitAssemblyPath = nunitAssemblyPath;
-            sysSettings.NunitConsolePath = nunitConsolePath;
-            sysSettings.NunitTimeOut = int.Parse(ConfigurationManager.AppSettings["ProcessingTimeOut"]);
 
-            sysSettings.AssignmentsBasePath = ConfigurationManager.AppSettings["AssignmentBasePath"];
+            settings.CscPath = cscPath;
+            settings.NunitAssemblyPath = nunitAssemblyPath;
+            settings.NunitConsolePath = nunitConsolePath;
+            settings.NunitTimeOut = int.Parse(ConfigurationManager.AppSettings["ProcessingTimeOut"]);
 
-            sysSettings.BaseResultPath = ConfigurationManager.AppSettings["ResultBasePath"];
-            if (!sysSettings.BaseResultPath.EndsWith(@"\"))
+            settings.BaseResultPath = ConfigurationManager.AppSettings["ResultBasePath"];
+
+            settings.PollingIntervalValue = ConfigurationManager.AppSettings["PollingInterval"];
+            settings.ProcessingTimeOut = ConfigurationManager.AppSettings["ProcessingTimeOut"];
+
+            settings.NunitTimeOut = 5000;
+            settings.CleanUp = false;
+
+            settings.SourcesPath = "";   //will be filled during the process
+            settings.OutputPath = "";    //will be filled during the process
+            settings.TestLogFileName = "testresult.xml";
+
+            if (!settings.BaseResultPath.EndsWith(@"\"))
             {
-                sysSettings.BaseResultPath += @"\";
+                settings.BaseResultPath += @"\";
             }
 
-            return sysSettings;
+            return settings;
         }
 
         public static string RemoveTrailingSlashFromPath(string path)
         {
             if (path == null)
+            {
                 return null;
+            }
 
             if (path.EndsWith(@"\"))
             {
                 path = path.Substring(0, path.Length - 1);
             }
+
             return path;
-        }
-
-        public static SubmitSettings CreateSubmitSettings(string teamName, string teamSubmitDirName, string assignmentId)
-        {
-            SubmitSettings submitSettings = new SubmitSettings();
-            submitSettings.TeamId = teamName;
-            submitSettings.BasePath = teamSubmitDirName;
-            submitSettings.TimeStamp = DateTime.Now;
-            submitSettings.AssignmentId = assignmentId;
-            return submitSettings;
-        }
-
-        public static AssignmentSettings CreateAssignmentSettings(Assignment assignment, string assignmentName)
-        {
-            AssignmentSettings assignmentSettings = new AssignmentSettings();
-            assignmentSettings.AssignmentId = assignmentName;
-            assignmentSettings.ClassnameToImplement = assignment.ClassNameToImplement;
-            assignmentSettings.InterfaceNameToImplement = assignment.InterfaceNameToImplement;
-            return assignmentSettings;
         }
     }
 }

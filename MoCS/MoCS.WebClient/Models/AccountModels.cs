@@ -11,21 +11,23 @@ using MoCS.Business.Objects;
 
 namespace MoCS.WebClient.Models
 {
-
     #region Services
-    // The FormsAuthentication type is sealed and contains static members, so it is difficult to
-    // unit test code that calls its members. The interface and helper class below demonstrate
-    // how to create an abstract wrapper around such a type in order to make the AccountController
-    // code unit testable.
-
+    /// The FormsAuthentication type is sealed and contains static members, so it is difficult to
+    /// unit test code that calls its members. The interface and helper class below demonstrate
+    /// how to create an abstract wrapper around such a type in order to make the AccountController
+    /// code unit testable.
     public interface IMembershipService
     {
         int MinPasswordLength { get; }
 
         bool ValidateUser(string userName, string password);
+
         bool ValidateUser(string userName, string password, out object providerUserKey);
+
         int GetUserId(string userName);
+
         MembershipCreateStatus CreateUser(string userName, string password, string members, out object providerUserKey);
+
         bool ChangePassword(string userName, string oldPassword, string newPassword);
     }
 
@@ -94,6 +96,7 @@ namespace MoCS.WebClient.Models
             {
                 result = (int)user.ProviderUserKey;
             }
+
             return result;
         }
 
@@ -112,6 +115,7 @@ namespace MoCS.WebClient.Models
             {
                 providerUserKey = null;
             }
+
             return status;
         }
 
@@ -142,7 +146,9 @@ namespace MoCS.WebClient.Models
     public interface IFormsAuthenticationService
     {
         void SignIn(string userName, bool createPersistentCookie);
+
         void SignIn(int userId, string userName, bool createPersistentCookie);
+
         void SignOut();
     }
 
@@ -164,8 +170,6 @@ namespace MoCS.WebClient.Models
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddMinutes(30), createPersistentCookie, userId.ToString());
             string encryptedTicket = FormsAuthentication.Encrypt(ticket);
             HttpContext.Current.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket));
-            //FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
-
         }
 
         public void SignOut()
@@ -206,6 +210,7 @@ namespace MoCS.WebClient.Models
                     };
                 }
             }
+
             return result;
         }
 
@@ -215,13 +220,13 @@ namespace MoCS.WebClient.Models
             {
                 HttpContext.Current.Session["tournamentId"] = t.Id;
                 HttpContext.Current.Session["tournamentName"] = t.Name;
-
             }
             else
             {
                 HttpContext.Current.Session.Remove("tournamentId");
                 HttpContext.Current.Session.Remove("tournamentName");
             }
+
             if (ta != null)
             {
                 HttpContext.Current.Session["tournamentAssignmentId"] = ta.Id;
@@ -251,7 +256,6 @@ namespace MoCS.WebClient.Models
             {
                 HttpContext.Current.Session.Remove("assignmentEnrollmentId");
                 HttpContext.Current.Session.Remove("assignmentEnrollmentStartDate");
-
             }
         }
 
@@ -280,6 +284,7 @@ namespace MoCS.WebClient.Models
                     Id = (int)HttpContext.Current.Session["tournamentAssignmentId"]
                 };
             }
+
             return result;
         }
 
@@ -453,5 +458,4 @@ namespace MoCS.WebClient.Models
         }
     }
     #endregion
-
 }

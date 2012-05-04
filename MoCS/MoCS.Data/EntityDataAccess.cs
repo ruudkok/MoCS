@@ -35,6 +35,7 @@ namespace MoCS.Data
             {
                 result.Add(CreateSubmitFromEntity(s));
             }
+
             return result;
         }
 
@@ -52,7 +53,6 @@ namespace MoCS.Data
             _m.Refresh(System.Data.Objects.RefreshMode.StoreWins, toUpdate);
         }
 
-
         public List<Team> GetTeams()
         {
             List<Team> result = new List<Team>();
@@ -66,7 +66,6 @@ namespace MoCS.Data
             }
 
             return result;
-            //return query.ToList();
         }
 
         public Team GetTeamByName(string teamName)
@@ -74,22 +73,12 @@ namespace MoCS.Data
             var query = from t in _m.Team
                         where t.Name == teamName
                         select t; // CreateTeamFromEntity(t);
-            //select new Team()
-            //{
-            //    Id = t.Id,
-            //    CreateDate = t.CreateDate,
-            //    IsAdmin = t.IsAdmin,
-            //    Name = t.Name,
-            //    Members = t.Members,
-            //    Password = t.Password,
-            //    Score = t.Score
-            //};
 
             if (query.Count() > 0)
             {
                 return CreateTeamFromEntity(query.First());
-                //return query.First();
             }
+
             return null;
         }
 
@@ -102,8 +91,8 @@ namespace MoCS.Data
             if (query.Count() > 0)
             {
                 return CreateTeamFromEntity(query.First());
-                //return query.First();
             }
+
             return null;
         }
 
@@ -121,7 +110,6 @@ namespace MoCS.Data
 
             _m.AddToTeam(toSave);
             _m.SaveChanges();
-            // _m.Refresh(System.Data.Objects.RefreshMode.StoreWins, toSave);
 
             team.Id = toSave.Id;
 
@@ -139,7 +127,6 @@ namespace MoCS.Data
             toUpdate.Password = team.Password;
             toUpdate.IsAdmin = team.IsAdmin;
             toUpdate.Score = team.Score;
-
 
             _m.SaveChanges();
             _m.Refresh(System.Data.Objects.RefreshMode.StoreWins, toUpdate);
@@ -176,8 +163,8 @@ namespace MoCS.Data
             {
                 result.Add(CreateTournamentAssignmentFromEntity(t));
             }
+
             return result;
-            //return query.ToList();
         }
 
         public Tournament GetTournamentById(int tournamentId)
@@ -190,6 +177,7 @@ namespace MoCS.Data
             {
                 return CreateTournamentFromEntity(query.First());
             }
+
             return null;
         }
 
@@ -206,7 +194,6 @@ namespace MoCS.Data
             }
 
             return result;
-            //return query.ToList();
         }
 
         public List<AssignmentEnrollment> GetAssignmentEnrollmentsForTeam(int teamId)
@@ -240,7 +227,6 @@ namespace MoCS.Data
             }
 
             return result;
-            //return query.ToList();
         }
 
         public Assignment GetAssignmentById(int assignmentId)
@@ -253,6 +239,7 @@ namespace MoCS.Data
             {
                 return CreateAssignmentFromEntity(query.First());
             }
+
             return null;
         }
 
@@ -266,6 +253,7 @@ namespace MoCS.Data
             {
                 return CreateTournamentAssignmentFromEntity(query.First());
             }
+
             return null;
         }
 
@@ -279,6 +267,7 @@ namespace MoCS.Data
             {
                 return CreateAssignmentEnrollmentFromEntity(query.First());
             }
+
             return null;
         }
 
@@ -324,6 +313,7 @@ namespace MoCS.Data
             {
                 result.Add(CreateSubmitFromEntity(s));
             }
+
             return result;
         }
 
@@ -338,6 +328,7 @@ namespace MoCS.Data
             {
                 return CreateSubmitFromEntity(query.First());
             }
+
             return null;
         }
 
@@ -362,6 +353,7 @@ namespace MoCS.Data
             {
                 return null;
             }
+
             Assignment result = new Assignment()
             {
                 Id = eAssignment.Id,
@@ -384,16 +376,6 @@ namespace MoCS.Data
 
             e.Assignment result = e.Assignment.CreateAssignment(a.Id, a.Name, a.CreateDate, a.Path);
 
-            //e.Assignment result = new e.Assignment()
-            //{
-            //    Id = a.Id,
-            //    Name = a.Name,
-            //    FriendlyName = a.FriendlyName,
-            //    Tagline = a.Tagline,
-            //    CreateDate = a.CreateDate,
-            //    Path = a.Path
-            //};
-
             return result;
         }
 
@@ -403,6 +385,7 @@ namespace MoCS.Data
             {
                 return null;
             }
+
             Team result = new Team()
             {
                 Id = eTeam.Id,
@@ -426,17 +409,6 @@ namespace MoCS.Data
 
             e.Team result = e.Team.CreateTeam(t.Id, t.Name, t.Password, t.CreateDate, t.Score, t.IsAdmin);
 
-            //e.Team result = new e.Team()
-            //{
-            //    Id = t.Id,
-            //    CreateDate = t.CreateDate,
-            //    IsAdmin = t.IsAdmin,
-            //    Members = t.Members,
-            //    Name = t.Name,
-            //    Password = t.Password,
-            //    Score = t.Score
-            //};
-
             return result;
         }
 
@@ -446,6 +418,7 @@ namespace MoCS.Data
             {
                 return null;
             }
+
             TournamentAssignment result = new TournamentAssignment()
             {
                 Id = eTournamentAssignment.Id,
@@ -468,6 +441,7 @@ namespace MoCS.Data
             {
                 return null;
             }
+
             e.TournamentAssignment result = e.TournamentAssignment.CreateTournamentAssignment(ta.Id, ta.AssignmentOrder, ta.Points1, ta.Points2, ta.Points3, ta.IsActive, ta.CreateDate);
 
             result.AssignmentReference.Value = (from a in _m.Assignment
@@ -476,19 +450,6 @@ namespace MoCS.Data
             result.TournamentReference.Value = (from t in _m.Tournament
                                                 where t.Id == ta.Tournament.Id
                                                 select t).First();
-
-            //e.TournamentAssignment result = new e.TournamentAssignment()
-            //{
-            //    Id = TA.Id,
-            //    AssignmentOrder = TA.AssignmentOrder,
-            //    IsActive = TA.IsActive,
-            //    CreateDate = TA.CreateDate,
-            //    Points1 = TA.Points1,
-            //    Points2 = TA.Points2,
-            //    Points3 = TA.Points3,
-            //    Assignment = CreateEntityFromAssignment(TA.Assignment),
-            //    Tournament = CreateEntityFromTournament(TA.Tournament)
-            //};
 
             return result;
         }
@@ -499,13 +460,13 @@ namespace MoCS.Data
             {
                 return null;
             }
+
             Tournament result = new Tournament()
             {
                 CreateDate = eTournament.CreateDate,
                 Id = eTournament.Id,
                 Name = eTournament.Name
             };
-
             return result;
         }
 
@@ -515,14 +476,8 @@ namespace MoCS.Data
             {
                 return null;
             }
-            e.Tournament result = e.Tournament.CreateTournament(t.Id, t.Name, t.CreateDate);
 
-            //e.Tournament result = new e.Tournament()
-            //{
-            //    CreateDate = t.CreateDate,
-            //    Id = t.Id,
-            //    Name = t.Name
-            //};
+            e.Tournament result = e.Tournament.CreateTournament(t.Id, t.Name, t.CreateDate);
 
             return result;
         }
@@ -533,6 +488,7 @@ namespace MoCS.Data
             {
                 return null;
             }
+
             AssignmentEnrollment result = new AssignmentEnrollment()
             {
                 Id = eAE.Id,
@@ -551,6 +507,7 @@ namespace MoCS.Data
             {
                 return null;
             }
+
             e.AssignmentEnrollment result = e.AssignmentEnrollment.CreateAssignmentEnrollment(ae.Id, DateTime.Now, true);
 
             result.TeamReference.Value = (from t in _m.Team
@@ -559,16 +516,6 @@ namespace MoCS.Data
             result.TournamentAssignmentReference.Value = (from ta in _m.TournamentAssignment
                                                           where ta.Id == ae.TournamentAssignment.Id
                                                           select ta).First();
-
-
-            //e.AssignmentEnrollment result = new MoCS.Data.Entity.AssignmentEnrollment()
-            //{
-            //    IsActive = ae.IsActive,
-            //    StartDate = ae.StartDate,
-            //    TournamentAssignment = CreateEntityFromTournamentAssignment(ae.TournamentAssignment),
-            //    Team = CreateEntityFromTeam(ae.Team)
-            //};
-
             return result;
         }
 
@@ -606,20 +553,22 @@ namespace MoCS.Data
                 return null;
 
             }
+
             e.Submit result = e.Submit.CreateSubmit(s.Id, s.SubmitDate, s.Status, s.SecondsSinceEnrollment, s.IsProcessed, s.ProcessingDetails, s.FileName, s.FileContents, s.Data, s.StatusDate);
 
             result.AssignmentEnrollmentReference.Value = (from ae in _m.AssignmentEnrollment
                                                           where ae.Id == s.AssignmentEnrollment.Id
                                                           select ae).First();
+
             result.TournamentAssignmentReference.Value = (from ta in _m.TournamentAssignment
                                                           where ta.Id == s.TournamentAssignment.Id
                                                           select ta).First();
+
             result.TeamReference.Value = (from t in _m.Team
                                           where t.Id == s.Team.Id
                                           select t).First();
             return result;
         }
         #endregion
-
     }
 }

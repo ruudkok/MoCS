@@ -81,7 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientFacade.cs" />
-    <Compile Include="ClientFacadeOld.cs" />
     <Compile Include="FacadeHelpers.cs" />
     <Compile Include="MoCSException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,7 +89,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="TournamentReportGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoCS.Business.Objects\MoCS.Business.Objects.csproj">

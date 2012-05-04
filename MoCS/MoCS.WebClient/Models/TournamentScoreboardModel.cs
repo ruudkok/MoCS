@@ -10,7 +10,9 @@ namespace MoCS.WebClient.Models
     public class StatusInfo
     {
         public long SecondsSinceEnrollment { get; set; }
+
         public StatusEnum Status { get; set; }
+
         public int FinishOrder { get; set; }
     }
 
@@ -25,12 +27,13 @@ namespace MoCS.WebClient.Models
     public class TournamentScoreboardModel
     {
         public List<Team> Teams { get; set; }
+
         public List<Assignment> Assignments { get; set; }
+
         private Dictionary<string, StatusInfo> _submitInfos = new Dictionary<string, StatusInfo>();
 
         public OrderedDictionary StatusInfosPerTeam = new OrderedDictionary();
-        //public OrderedDictionary<int, List<StatusInfo>> StatusInfosPerTeam = new Dictionary<int, List<StatusInfo>>();
-
+ 
         public void Fill(List<TournamentAssignment> taList)
         {
             // Get the teams
@@ -38,10 +41,8 @@ namespace MoCS.WebClient.Models
             Assignments = new List<Assignment>();
 
             OrderedDictionary tempStatusInfosPerTeam = new OrderedDictionary();
-            //Dictionary<int, List<StatusInfo>> tempStatusInfosPerTeam = new Dictionary<int, List<StatusInfo>>();
 
             OrderedDictionary submitsPerTournamentAssignment = new OrderedDictionary();
-            //Dictionary<TournamentAssignment, List<Submit>> submitsPerTournamentAssignment = new Dictionary<TournamentAssignment, List<Submit>>();
 
             foreach (TournamentAssignment ta in taList)
             {
@@ -101,9 +102,7 @@ namespace MoCS.WebClient.Models
             {
                 // sort the submits descending
                 ((List<Submit>)submitsPerTournamentAssignment[ta.Id.ToString()]).Sort(new DescendingSubmitComparer());
-
             }
-
 
             foreach (string taId in submitsPerTournamentAssignment.Keys)
             {
@@ -144,13 +143,16 @@ namespace MoCS.WebClient.Models
                     finishedCounts.Add(nrOfFinished);
                     FinishedPerTeam.Add(nrOfFinished, new List<Team>());
                 }
+
                 if (nrOfFinished > 1)
                 {
                     long totalScore = Teams.Find(t => t.Id == int.Parse(teamId)).Score;
+
                     // calculate mean score
                     long meanScore = (long)Math.Round((double)totalScore / (double)nrOfFinished);
                     Teams.Find(t => t.Id == int.Parse(teamId)).Score = meanScore;
                 }
+
                 FinishedPerTeam[nrOfFinished].Add(Teams.Find(t => t.Id == int.Parse(teamId)));
             }
 
@@ -166,12 +168,6 @@ namespace MoCS.WebClient.Models
                 teams.Reverse();
                 sortedTeamList.AddRange(teams);
             }
-
-
-            //// Sort the teams by score (total seconds taken), zero scores are last.
-            //Teams.Sort(new ScoreComparer());
-            ////Teams.Sort((t1, t2) => t1.Score.CompareTo(t2.Score));
-            ////Teams.Reverse();
 
             Teams = sortedTeamList;
 
@@ -219,6 +215,7 @@ namespace MoCS.WebClient.Models
                     {
                         return 0;
                     }
+
                     if (x.SecondsSinceEnrollment < y.SecondsSinceEnrollment)
                     {
                         return -1;
@@ -227,8 +224,8 @@ namespace MoCS.WebClient.Models
                     {
                         return 1;
                     }
-
                 }
+
                 if (x.ConvertStatus(x.Status) < y.ConvertStatus(y.Status))
                 {
                     return -1;
@@ -237,13 +234,11 @@ namespace MoCS.WebClient.Models
                 {
                     return 1;
                 }
-
             }
         }
 
         public class ScoreComparer : IComparer<Team>
         {
-
             public int Compare(Team x, Team y)
             {
                 if (x.Score == y.Score)
@@ -261,7 +256,6 @@ namespace MoCS.WebClient.Models
                     {
                         return 1;
                     }
-
                 }
                 else
                 {
@@ -274,66 +268,13 @@ namespace MoCS.WebClient.Models
                         return -1;
                     }
                 }
-
             }
         }
-
-        // public static TournamentScoreboardModel GetTournamentScoreboard(int tournamentId)
-        // {
-        //static method. This can be moved to a repository when needed.
-
-        //TournamentScoreboardModel model = new TournamentScoreboardModel();
-
-        ////teams should be ordered by rank / points...
-        //model.Teams = new Team[7];
-        //model.Teams[0] = new Team() { Id = 1, Name = "Team1", Members = "Kenny, Kyle" };
-        //model.Teams[1] = new Team() { Id = 2, Name = "Team2", Members = "Stan, Eric" };
-        //model.Teams[2] = new Team() { Id = 3, Name = "Team2", Members = "Chef" };
-        //model.Teams[3] = new Team() { Id = 4, Name = "Team2", Members = "He-man, Teela" };
-        //model.Teams[4] = new Team() { Id = 5, Name = "Team2", Members = "Skeletor" };
-        //model.Teams[5] = new Team() { Id = 6, Name = "Team2", Members = "King Randor, Queen Marlena" };
-        //model.Teams[6] = new Team() { Id = 7, Name = "Team2", Members = "Man-at-Arms" };
-
-
-        //model.Assignments = new Assignment[2];
-        //model.Assignments[0] = new Assignment() { Id = 1, Name = "Hello World", FriendlyName = "Hello World" };
-        //model.Assignments[1] = new Assignment() { Id = 2, Name = "Some Other", FriendlyName = "Some Other" };
-
-        ////first assignment
-        //model.SetInfo(model.Teams[0], model.Assignments[0], new StatusInfo() { Score = 1, Status = StatusEnum.Finished, FinishOrder = 1 });
-        //model.SetInfo(model.Teams[1], model.Assignments[0], new StatusInfo() { Score = 1, Status = StatusEnum.Finished, FinishOrder = 2 });
-        //model.SetInfo(model.Teams[2], model.Assignments[0], new StatusInfo() { Score = 1, Status = StatusEnum.Finished, FinishOrder = 3 });
-        //model.SetInfo(model.Teams[3], model.Assignments[0], new StatusInfo() { Score = 1, Status = StatusEnum.Finished, FinishOrder = 4 });
-        //model.SetInfo(model.Teams[4], model.Assignments[0], new StatusInfo() { Score = 1, Status = StatusEnum.NotStarted, FinishOrder = 0 });
-        //model.SetInfo(model.Teams[5], model.Assignments[0], new StatusInfo() { Score = 1, Status = StatusEnum.Started, FinishOrder = 0 });
-        //model.SetInfo(model.Teams[6], model.Assignments[0], new StatusInfo() { Score = 1, Status = StatusEnum.Failed, FinishOrder = 0 });
-
-        ////second assignment
-        //model.SetInfo(model.Teams[0], model.Assignments[1], new StatusInfo() { Score = 1, Status = StatusEnum.Failed, FinishOrder = 0 });
-
-        //return model;
-        //}
-
-
 
         private string CreateKey(Team team, Assignment assignment)
         {
             return team.Id.ToString() + "_" + assignment.Id.ToString();
         }
-
-
-        //public StatusInfo GetInfo(Team team, Assignment assignment)
-        //{
-        //    //string key = CreateKey(team, assignment);
-        //    //if (_submitInfos.ContainsKey(key))
-        //    //{
-        //    //    return _submitInfos[key];
-        //    //}
-        //    //else
-        //    //{
-        //    //    return new StatusInfo() { Score = 0, Status = StatusEnum.NotStarted, FinishOrder = 0 };
-        //    //}
-        //}
 
         public void SetInfo(Team team, Assignment assignment, StatusInfo info)
         {
@@ -346,12 +287,6 @@ namespace MoCS.WebClient.Models
             {
                 _submitInfos.Add(key, info);
             }
-
         }
-
     }
-
-
-
-
 }
