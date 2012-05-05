@@ -28,5 +28,7 @@ namespace MoCS.Business.Objects.Interfaces
 
         void DeleteFileIfExists(string path);
         void CreateDirectoryIfNotExists(string path);
-     }
+
+        void DeleteDirectory(string path);
+    }
 }

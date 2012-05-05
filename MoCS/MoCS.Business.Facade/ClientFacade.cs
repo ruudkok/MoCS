@@ -11,7 +11,7 @@ using MoCS.Business.Objects.Interfaces;
 
 namespace MoCS.Business.Facade
 {
-    public class ClientFacade
+    public class ClientFacade : IBuildServiceFacade
     {
         private IDataAccess _dataAccess;
         private IFileSystem _fileSystem;
@@ -57,7 +57,6 @@ namespace MoCS.Business.Facade
             return da;
         }
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientFacade"/> class.
         /// DataAccess and assignmentsBasePath are taken from App.config.
@@ -79,9 +78,6 @@ namespace MoCS.Business.Facade
                 _useNotification = false;
             }
         }
-
-     
-
         #endregion
 
         #region Used by the BuildService
@@ -97,12 +93,13 @@ namespace MoCS.Business.Facade
             {
                 details = "Empty";
             }
+
             _dataAccess.UpdateSubmitStatusDetails(submitId, newStatus, details, statusDate);
 
             NotifySubmitStatusChange(submitId, newStatus, details, statusDate);
 
             Submit firstPlaceSubmit = null;
-            //TODO If newstatus is success, check if this submit is in first place for the assignment
+
             if (newStatus == SubmitStatus.Success)
             {
                 // Get the tournamentassignment of the submit
@@ -125,9 +122,7 @@ namespace MoCS.Business.Facade
 
         public List<TournamentAssignment> GetTournamentScoreboard(int tournamentId)
         {
-            List<TournamentAssignment> result;
-            //Get tournamentAssignments
-            result = GetTournamentAssignmentsForTournament(tournamentId);
+            List<TournamentAssignment> result = GetTournamentAssignmentsForTournament(tournamentId);
 
             //Get submits per tournamentassigment
             foreach (TournamentAssignment ta in result)
@@ -148,7 +143,6 @@ namespace MoCS.Business.Facade
                 }
             }
 
-
             return result;
         }
 
@@ -164,24 +158,6 @@ namespace MoCS.Business.Facade
                           orderby c.SubmitDate descending
                           select c).First();
             }
-
-            // D'OH!
-            //// First, see if there's a successful submit
-            //result = candidates.Find(c => c.Status == SubmitStatus.Success.ToString());
-
-            //// Second, any is there a submit in progress?
-            //if (result == null)
-            //{
-            //    result = candidates.Find(c => (c.Status == SubmitStatus.Submitted.ToString()) || c.Status == SubmitStatus.Processing.ToString());
-            //}
-
-            //// Third, settle for the 
-            //if (result == null)
-            //{
-            //    result = (from c in candidates
-            //              orderby c.SubmitDate descending
-            //              select c).First();
-            //}
 
             return result;
         }
@@ -274,11 +250,9 @@ namespace MoCS.Business.Facade
                 {
                     result.Assignment = FacadeHelpers.FillAssignmentDetailsFromXml(result.Assignment, _fileSystem, includeServerFiles);
                 }
-
             }
 
             return result;
-
         }
 
         public AssignmentEnrollment GetAssignmentEnrollmentById(int id)
@@ -304,6 +278,7 @@ namespace MoCS.Business.Facade
         public Submit SaveSubmit(Submit submit)
         {
             Submit result = null;
+
             //Check for unprocessed and already successful submits
             foreach (Submit s in GetSubmitsForAssignmentEnrollment(submit.AssignmentEnrollment.Id))
             {
@@ -459,26 +434,12 @@ namespace MoCS.Business.Facade
             return result;
         }
 
-        //public string GetTournamentReport(int tournamentId)
-        //{
-        //    List<Team> teams = _dataAccess.GetTeams();
-        //    Tournament tournament = _dataAccess.GetTournamentById(tournamentId);
-        //    List<TournamentAssignment> assignments = _dataAccess.GetTournamentAssignmentsForTournament(tournamentId);
-
-        //    List<Submit> submits = _dataAccess.GetSubmitsForReport(tournamentId);
-
-        //    XmlDocument doc = TournamentReportGenerator.CreateTournamentReport(tournament, teams, assignments, submits);
-
-        //    return doc.OuterXml;
-        //}
-
         #endregion
 
         #region NotifyService
 
         public void NotifyFirstPlace(Submit submit)
         {
-
             if (_useNotification)
             {
                 string notifyText;
@@ -494,7 +455,6 @@ namespace MoCS.Business.Facade
             if (_useNotification)
             {
                 string notifyText;
-                //Get the submit
 
                 //don't use global setting. this will break the multithreaded buildprocess
                 IDataAccess dataAccess = CreateDataAccess();
@@ -536,7 +496,6 @@ namespace MoCS.Business.Facade
                         break;
                 }
             }
-
         }
 
         public void NotifyAll(MessageType messageType, DateTime dateTime, string teamId, string category, string text)
@@ -550,7 +509,9 @@ namespace MoCS.Business.Facade
                         notifyClient.NotifyAll(messageType, dateTime, teamId, category, text);
                     }
                 }
-                catch { }
+                catch 
+                { 
+                }
             }, null);
         }
 

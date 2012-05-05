@@ -1,32 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using MoCS.WebClient.Models;
-using MoCS.Business.Objects;
-using System.Web.Routing;
 using MoCS.Business.Facade;
-using System.Web.Security;
+using MoCS.Business.Objects;
+using MoCS.WebClient.Models;
 
 namespace MoCS.WebClient.Controllers
 {
     public class AssignmentsController : Controller
     {
-        //
-        // GET: /Assignments/
-
-        //protected override void Initialize(RequestContext requestContext)
-        //{
-        //    //credentials = new Credentials()
-        //    //{
-        //    //    Username = User.Identity.Name,
-        //    //    Password = (string)Session["password"]
-        //    //};
-
-        //    base.Initialize(requestContext);
-        //}
-
         [Authorize]
         public ActionResult Index()
         {
@@ -65,7 +46,6 @@ namespace MoCS.WebClient.Controllers
             {
                 return RedirectToAction("Index");
             }
-
 
             // Get the assignments of the selected tournament
             TournamentAssignmentsModel taModel = new TournamentAssignmentsModel();
@@ -119,7 +99,6 @@ namespace MoCS.WebClient.Controllers
             SessionUtil.SetSession(tournament, null, null, null);
 
             return RedirectToAction("Assignments");
-
         }
 
         [Authorize]
@@ -131,6 +110,7 @@ namespace MoCS.WebClient.Controllers
             {
                 return RedirectToAction("Index");
             }
+
             // Check for existence of tournamentAssignment
             TournamentAssignment ta = ClientFacade.Instance.GetTournamentAssignmentById(tournamentAssignmentId, false);
             if (ta == null)
@@ -155,6 +135,5 @@ namespace MoCS.WebClient.Controllers
 
             return RedirectToAction("Index", "CurrentAssignment");
         }
-
     }
 }

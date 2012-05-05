@@ -15,6 +15,7 @@ namespace MoCS.WebClient.Controllers
         public ActionResult Index()
         {
             ViewData["Message"] = "Welcome to the C# Assignment Framework";
+
             //Get the enrollments for the active user
             Team team = SessionUtil.GetTeamFromFormsAuthentication();
 

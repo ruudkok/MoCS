@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace MoCS.WebClient.Models
 {
-    public class TournamentsModel : List<TournamentModel> { }
+    public class TournamentsModel : List<TournamentModel> 
+    { 
+    }
 
     public class TournamentModel
     {

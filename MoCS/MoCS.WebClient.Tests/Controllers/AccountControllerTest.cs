@@ -11,11 +11,9 @@ using MoCS.WebClient.Models;
 
 namespace MoCS.WebClient.Tests.Controllers
 {
-
     [TestClass]
     public class AccountControllerTest
     {
-
         [TestMethod]
         public void ChangePassword_Get_ReturnsView()
         {
@@ -364,6 +362,7 @@ namespace MoCS.WebClient.Tests.Controllers
                 {
                     return _user;
                 }
+
                 set
                 {
                     base.User = value;
@@ -401,7 +400,6 @@ namespace MoCS.WebClient.Tests.Controllers
                 return (userName == "someUser" && oldPassword == "goodOldPassword" && newPassword == "goodNewPassword");
             }
 
-
             public bool ValidateUser(string userName, string password, out object providerUserKey)
             {
                 throw new NotImplementedException();
@@ -417,6 +415,5 @@ namespace MoCS.WebClient.Tests.Controllers
                 throw new NotImplementedException();
             }
         }
-
     }
 }

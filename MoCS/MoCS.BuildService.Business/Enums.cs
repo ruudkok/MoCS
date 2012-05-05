@@ -5,7 +5,6 @@ using System.Text;
 
 namespace MoCS.BuildService.Business
 {
-
     public enum SubmitStatusCode
     {
         Unknown,
@@ -16,5 +15,4 @@ namespace MoCS.BuildService.Business
         Success,
         TimeOut
     }
-
 }

@@ -25,34 +25,42 @@ namespace MoCS.WebClient.Models
             get { return _applicationName; }
             set { _applicationName = value; }
         }
+
         public override int MaxInvalidPasswordAttempts
         {
             get { return _maxInvalidPasswordAttempts; }
         }
+
         public override int MinRequiredNonAlphanumericCharacters
         {
             get { return _minRequiredNonAlphanumericCharacters; }
         }
+
         public override int MinRequiredPasswordLength
         {
             get { return _minRequiredPasswordLength; }
         }
+
         public override int PasswordAttemptWindow
         {
             get { return _passwordAttemptWindow; }
         }
+
         public override MembershipPasswordFormat PasswordFormat
         {
             get { return _passwordFormat; }
         }
+
         public override string PasswordStrengthRegularExpression
         {
             get { return _passwordStrengthRegularExpression; }
         }
+
         public override bool RequiresQuestionAndAnswer
         {
             get { return _requiresQuestionAndAnswer; }
         }
+
         public override bool RequiresUniqueEmail
         {
             get { return _requiresUniqueEmail; }
@@ -107,7 +115,6 @@ namespace MoCS.WebClient.Models
             };
 
             team = ClientFacade.Instance.SaveTeam(team);
-
 
             if (team != null)
             {

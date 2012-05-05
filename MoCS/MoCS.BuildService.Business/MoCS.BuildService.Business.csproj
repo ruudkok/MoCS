@@ -78,23 +78,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssignmentSettings.cs" />
-    <Compile Include="BatchFileCreator.cs" />
+    <Compile Include="Processing\BaseProcess.cs" />
+    <Compile Include="Processing\BootstrapProcess.cs" />
+    <Compile Include="Processing\BusinessValidationProcess.cs" />
+    <Compile Include="Processing\CleanUpProcess.cs" />
+    <Compile Include="Processing\CompileProcess.cs" />
+    <Compile Include="Results\ExecuteProcessResult.cs" />
+    <Compile Include="Processing\MoCSValidationProcess.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="ExecuteCmd.cs" />
-    <Compile Include="FileSystemWrapper.cs" />
     <Compile Include="Interfaces\IExecuteCmd.cs" />
-    <Compile Include="Interfaces\IFileSystem.cs" />
+    <Compile Include="Results\ProcessResult.cs" />
+    <Compile Include="ProcessStartInfoFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubmitValidator.cs" />
-    <Compile Include="SubmitResult.cs" />
-    <Compile Include="SubmitSettings.cs" />
-    <Compile Include="SystemSettings.cs" />
+    <Compile Include="Settings\ProcessSettings.cs" />
+    <Compile Include="Results\SubmitResult.cs" />
+    <Compile Include="Settings\SystemSettings.cs" />
+    <Compile Include="Processing\TestProcess.cs" />
+    <Compile Include="Results\TestResults.cs" />
+    <Compile Include="TestResultsInterpreter.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="ValidationResult.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <Compile Include="Results\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -113,6 +116,13 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoCS.Business.Objects\MoCS.Business.Objects.csproj">
+      <Project>{14CF4DE6-3E9A-40A5-947D-E8FBA1CD5DF3}</Project>
+      <Name>MoCS.Business.Objects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
